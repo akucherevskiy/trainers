@@ -11,7 +11,7 @@ namespace AppBundle\Entity\Traits;
 trait UserSkeleton
 {
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=50)
      *
      * @Assert\NotBlank(message="Please enter your name.", groups={"Registration", "Profile"})
      * @Assert\Length(
@@ -25,10 +25,36 @@ trait UserSkeleton
     protected $name;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string", length=50)
+     *
+     * @Assert\NotBlank(message="Please enter your name.", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max=255,
+     *     minMessage="The name is too short.",
+     *     maxMessage="The name is too long.",
+     *     groups={"Registration", "Profile"}
+     * )
      */
+    protected $surname;
 
+    /**
+     * @ORM\Column(type="boolean")
+     * @Assert\NotBlank(message="Please check for user is admin", groups={"Registration", "Profile"})
+     */
     protected $isAdmin;
+
+    /**
+     * @ORM\Column(type="integer", length=2, nullable=true)
+     */
+    protected $age;
+
+    /**
+     * @ORM\Column(type="string", length=1, options={"fixed" = true})
+     * @Assert\NotBlank(message="Please enter your sex", groups={"Registration", "Profile"})
+     */
+    protected $sex;
+
     /**
      * @return mixed
      */
@@ -37,6 +63,10 @@ trait UserSkeleton
         return $this->name;
     }
 
+    /**
+     * @param $name
+     * @return $this
+     */
     public function setName($name)
     {
         $this->name = $name;
@@ -44,10 +74,79 @@ trait UserSkeleton
         return $this;
     }
 
-    public function getIsAdmin(){}
-    public function setIsAdmin($isAdmin){}
-    public function getAge(){}
-    public function setAge($age){}
-    public function getSex(){}
-    public function setSex($sex){}
+    /**
+     * @return mixed
+     */
+    public function getSurName()
+    {
+        return $this->surname;
+    }
+
+    /**
+     * @param $surname
+     * @return $this
+     */
+    public function setSurName($surname)
+    {
+        $this->surname = $surname;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIsAdmin()
+    {
+        return $this->isAdmin;
+    }
+
+    /**
+     * @param $isAdmin
+     * @return $this
+     */
+    public function setIsAdmin($isAdmin)
+    {
+        $this->isAdmin = $isAdmin;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAge()
+    {
+        return $this->age;
+    }
+
+    /**
+     * @param $age
+     * @return $this
+     */
+    public function setAge($age)
+    {
+        $this->age = $age;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSex()
+    {
+        return $this->sex;
+    }
+
+    /**
+     * @param $sex
+     * @return $this
+     */
+    public function setSex($sex)
+    {
+        $this->sex = $sex;
+
+        return $this;
+    }
 }
