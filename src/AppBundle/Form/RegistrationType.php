@@ -9,6 +9,8 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
 
 class RegistrationType extends AbstractType
 {
@@ -17,13 +19,24 @@ class RegistrationType extends AbstractType
         $builder->add('name');
     }
 
+    public function getBlockPrefix()
+    {
+        return 'app_user_registration';
+    }
+
     public function getParent()
     {
         return 'FOS\UserBundle\Form\Type\RegistrationFormType';
     }
 
-    public function getBlockPrefix()
+    // If you wanna override parent fields at all
+    // remove getParent and uncomment this
+/*    public function configureOptions(OptionsResolver $resolver)
     {
-        return 'app_user_registration';
+        $resolver->setDefaults(array(
+            'data_class' => 'AppBundle\Entity\User',
+        ));
     }
+*/
+
 }
