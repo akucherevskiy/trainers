@@ -39,12 +39,6 @@ trait UserSkeleton
     protected $surname;
 
     /**
-     * @ORM\Column(type="boolean")
-     * @Assert\NotBlank(message="Please check for user is admin", groups={"Registration", "Profile"})
-     */
-    protected $isAdmin;
-
-    /**
      * @ORM\Column(type="integer", length=2, nullable=true)
      */
     protected $age;
